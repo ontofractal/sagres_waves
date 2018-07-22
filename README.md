@@ -1,14 +1,17 @@
-Sagres Vesting contracts for WAVES blockchain
+Sagres is an open source web app for generation of vesting smart contracts on WAVES blockchain.
+ 
+It can be used to define linear vesting schemes with max vesting period and vesting cliff at the start. Smart contract restricts withdrawal of predefined asset for individual accounts of project founders, invstors, employees an consultants. An individual smart contract should be deployed for every account that needs vesting scheme.
+  
 
 # Sagres?
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Leuchtturm_Algarve_20060422.jpg/640px-Leuchtturm_Algarve_20060422.jpg)
 
-Sagres is a beautiful place in Portugal, where steep cliffs are shaped and eroded by waves. As a fan of puns, I find Sagres to be a fitting name for vesting contracts for WAVES blockchain.
+Sagres is a beautiful place in Portugal, where steep cliffs are shaped and eroded by waves. I find Sagres to be a fitting name for vesting contracts for WAVES blockchain.
 
 # Why?
 
-Vesting is a tool that can be used to align incentives of project co-founders, employees, consultants and investors.
+Vesting is an important incentive design tool that can be used to align incentives of project co-founders, employees, consultants and investors.
 
 
 # Features
