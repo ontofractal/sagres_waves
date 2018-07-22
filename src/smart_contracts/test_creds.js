@@ -1,6 +1,3 @@
-// import {createContractFromTemplate} from "./basic_vesting_template";
-const {createContractFromTemplate} = require("./basic_vesting_template")
-
 const tokenCreatorSeed = {
   address: "3MxrDd9CHfPrGTVajhXeHpiCAL7Gpp8ijyo",
   keyPair:

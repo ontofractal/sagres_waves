@@ -14,10 +14,8 @@ class App extends Component {
               <Image size='mini' src={cliffLogo} style={{marginRight: "1.5em"}}/>
               Sagres
             </Menu.Item>
-            <Menu.Item as='a'>Generate</Menu.Item>
             <Menu.Item position={"right"} as='a' href={"http://twitter.com/ontofractal"}>built by
               @ontofractal</Menu.Item>
-
           </Container>
         </Menu>
 

@@ -1,5 +1,4 @@
-// import {DateTime} from "luxon"
-const {DateTime} = require("luxon")
+import {DateTime} from "luxon"
 
 const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId, ownerPk, maxVestingPeriodWeeks, cliffPeriodWeeks}) => {
   const startingUnixTimestampMsec = DateTime.fromISO(startingDate).toMillis()
@@ -37,7 +36,4 @@ const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId,
 `
 }
 
-// export {createContractFromTemplate}
-module.exports = {
-  createContractFromTemplate
-}
+export {createContractFromTemplate}
