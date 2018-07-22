@@ -15,10 +15,10 @@ const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId,
       let txSenderIsOwner = ownerPk == tx.senderPk
       let txSenderAddress = addressFromPublicKey(tx.senderPk)
     
-      let vestingPeriodEnded = if elapsedWeeks > ${maxVestingPeriodWeeks} then true else false
     
       let elapsedMsec = tx.timestamp - startingUnixTimestampMsec
       let elapsedWeeks = elapsedMsec / 7 * 86400 * 1000 
+      let vestingPeriodEnded = if elapsedWeeks > ${maxVestingPeriodWeeks} then true else false
       
       let currentBalance = accountAssetBalance(txSenderAddress, assetId)
       let remainingBalanceAfterTx = currentBalance - tx.amount
