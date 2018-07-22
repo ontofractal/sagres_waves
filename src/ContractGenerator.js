@@ -44,6 +44,9 @@ class ContractGenerator extends Component {
           This is an experimental project and may contain bugs. Do not use in production before doing an professional
           audit.
         </Segment>
+        <Segment color={"blue"}>
+          <a href={"https://github.com/ontofractal/sagres_waves"}> Sagres Github Repo  </a>
+        </Segment>
 
       </div>
     );
