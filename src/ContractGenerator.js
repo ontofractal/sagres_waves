@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Header, Button, Form} from "semantic-ui-react"
+import {Header, Button, Form, Segment} from "semantic-ui-react"
 import {createContractFromTemplate} from "./smart_contracts/basic_vesting_template";
 
 
@@ -17,8 +17,8 @@ class ContractGenerator extends Component {
     return (
       <div className="Contract-generator">
         <Header> Generate a vesting smart contract for an account </Header>
-        <div>
-          <Form onSubmit={this.handleSubmit}>
+        <Segment inverted>
+          <Form inverted>
             <Form.Group>
               <Form.Input placeholder='Owner PK' name='ownerPk' value={ownerPk}
                           onChange={this.handleChange}/>
@@ -32,11 +32,11 @@ class ContractGenerator extends Component {
               <Form.Input placeholder='Cliff (weeks)' name='cliffPeriodWeeks' value={cliffPeriodWeeks}
                           onChange={this.handleChange}/>
             </Form.Group>
-            <div className={"Smart-contract-build"}>
+            <Segment className={"Smart-contract-build"}>
               {contractScript}
-            </div>
+            </Segment>
           </Form>
-        </div>
+        </Segment>
 
       </div>
     );
