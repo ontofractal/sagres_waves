@@ -19,21 +19,24 @@ class ContractGenerator extends Component {
         <Header> Generate a vesting smart contract for an account </Header>
         <Segment inverted>
           <Form inverted>
-            <Form.Group>
-              <Form.Input placeholder='Owner PK' name='ownerPk' value={ownerPk}
+            <Form.Group width={"equal"}>
+              <Form.Input label='Owner public key' name='ownerPk' value={ownerPk}
                           onChange={this.handleChange}/>
-              <Form.Input placeholder='Starting UNIX timestamp' name='startingDate'
+              <Form.Input label='Vesting start date' name='startingDate'
                           value={startingDate} onChange={this.handleChange}/>
-              <Form.Input placeholder='Starting asset amount' name='originalAssetAmount' value={originalAssetAmount}
+              <Form.Input label='Starting asset amount' name='originalAssetAmount' value={originalAssetAmount}
                           onChange={this.handleChange}/>
-              <Form.Input placeholder='Asset ID' name='assetId' value={assetId} onChange={this.handleChange}/>
-              <Form.Input placeholder='Maximum weeks vesting' name='maxVestingPeriodWeeks' value={maxVestingPeriodWeeks}
+              <Form.Input label='Asset ID' name='assetId' value={assetId} onChange={this.handleChange}/>
+              <Form.Input label='Maximum weeks vesting' name='maxVestingPeriodWeeks' value={maxVestingPeriodWeeks}
                           onChange={this.handleChange}/>
-              <Form.Input placeholder='Cliff (weeks)' name='cliffPeriodWeeks' value={cliffPeriodWeeks}
+              <Form.Input label='Cliff (weeks)' name='cliffPeriodWeeks' value={cliffPeriodWeeks}
                           onChange={this.handleChange}/>
             </Form.Group>
             <Segment className={"Smart-contract-build"}>
-              {contractScript}
+              <Header> Generated smart contract source</Header>
+              <div>
+                {contractScript}
+              </div>
             </Segment>
           </Form>
         </Segment>
