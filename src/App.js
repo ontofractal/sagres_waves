@@ -1,15 +1,20 @@
 import React, {Component} from "react";
+import ContractGenerator from "./ContractGenerator"
+import {Grid} from 'semantic-ui-react'
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <Grid container className="App">
         <header className="App-header">
         </header>
-        <p className="App-intro">
-        </p>
-      </div>
+        <Grid className="App-intro" >
+
+
+          <ContractGenerator/>
+        </Grid>
+      </Grid>
     );
   }
 }
