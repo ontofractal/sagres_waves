@@ -24,7 +24,7 @@ const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId,
       let remainingBalanceAfterTx = currentBalance - tx.amount
   
       let minRequiredAtTxTimestamp = if elapsedWeeks <= ${cliffPeriodWeeks} then originalAssetAmount
-          else startingAssetAmount * (${maxVestingPeriodWeeks} - elapsedWeeks / ${maxVestingPeriodWeeks} - ${cliffPeriodWeeks})
+          else originalAssetAmount * (${maxVestingPeriodWeeks} - elapsedWeeks / ${maxVestingPeriodWeeks} - ${cliffPeriodWeeks})
   
       let vestingConditionsMatch = remainingBalanceAfterTx >= minRequiredAtTxTimestamp
   

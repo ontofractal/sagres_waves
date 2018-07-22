@@ -25,7 +25,7 @@ it("renders without crashing", () => {
       let remainingBalanceAfterTx = currentBalance - tx.amount
   
       let minRequiredAtTxTimestamp = if elapsedWeeks <= 6 then originalAssetAmount
-          else startingAssetAmount * (12 - elapsedWeeks / 12 - 6)
+          else originalAssetAmount * (12 - elapsedWeeks / 12 - 6)
   
       let vestingConditionsMatch = remainingBalanceAfterTx >= minRequiredAtTxTimestamp
   
