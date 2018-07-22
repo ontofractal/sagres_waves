@@ -1,4 +1,6 @@
 Sagres is an open source web app for generation of vesting smart contracts on WAVES blockchain.
+
+Sagres generator is live at [sagres-waves.com](http://sagres-waves.com/)
  
 It can be used to define linear vesting schemes with max vesting period and vesting cliff at the start. Smart contract restricts withdrawal of predefined asset for individual accounts of project founders, invstors, employees an consultants. An individual smart contract should be deployed for every account that needs vesting scheme.
   
