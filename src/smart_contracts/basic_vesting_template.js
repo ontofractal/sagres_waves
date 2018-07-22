@@ -1,7 +1,7 @@
 const createContractFromTemplate = config => `
 let startingUnixTimestampMsec = ${config.startingUnixTimestamp} * 1000
 let startingAssetAmount = ${config.startingAssetAmount} 
-let assetId = base58'"${config.assetId}"'
+let assetId = base58'${config.assetId}'
 let ownerAddress = "${config.ownerAddress}"
 
 match tx {
@@ -19,7 +19,7 @@ match tx {
 
     let vestingConditionsMatch = (currentBalance - tx.amount) >= minRequiredAtTxTimestamp
     
-    let txSenderIsOwner = extract(addressFromString(ownerAddress))
+    let txSenderIsOwner = extract(addressFromString(ownerAddress)).bytes == txSenderAddress.bytes
 
     sigVerify(tx.bodyBytes, tx.proofs[0], tx.senderPk) && txSenderIsOwner && (vestingPeriodEnded || vestingConditionsMatch)
 
