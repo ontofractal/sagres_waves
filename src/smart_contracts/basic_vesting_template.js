@@ -1,31 +1,39 @@
-const createContractFromTemplate = config => `
-let startingUnixTimestampMsec = ${config.startingUnixTimestamp} * 1000
-let startingAssetAmount = ${config.startingAssetAmount} 
-let assetId = base58'${config.assetId}'
-let ownerPk = base58'${config.ownerPk}'
+import {DateTime} from "luxon"
 
-match tx {
-  case tx:TransferTransaction =>
-    let txSenderIsOwner = ownerPk == tx.senderPk
+const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId, ownerPk, maxVestingPeriodWeeks, cliffPeriodWeeks}) => {
+  const startingUnixTimestampMsec = DateTime.fromISO("2016-05-25").toMillis()
+
+  return `
+  let startingUnixTimestampMsec = ${startingUnixTimestampMsec} 
+  let startingAssetAmount = ${originalAssetAmount} 
+  let assetId = base58'${assetId}'
+  let ownerPk = base58'${ownerPk}'
   
-    let vestingPeriodEnded = if elapsedWeeks > ${config.maxVestingPeriodWeeks} then true else false
-  
-    let elapsedMsec = tx.timestamp - startingUnixTimestampMsec
-    let elapsedWeeks = elapsedMsec / 7 * 86400 * 1000 
+  match tx {
+    case tx:TransferTransaction =>
     
-    let currentBalance = accountAssetBalance(txSenderAddress, assetId)
-    let remainingBalanceAfterTx = currentBalance - tx.amount
-
-    let minRequiredAtTxTimestamp = if elapsedWeeks <= ${config.minCliffWeeks} then startingAssetAmount
-        else startingAssetAmount * (52 - elapsedWeeks / 52 - ${config.minCliffWeeks})
-
-    let vestingConditionsMatch = remainingBalanceAfterTx >= minRequiredAtTxTimestamp
-
-    sigVerify(tx.bodyBytes, tx.proofs[0], tx.senderPk) && txSenderIsOwner && (vestingPeriodEnded || vestingConditionsMatch)
-
-  case burnTx:BurnTransaction => true
-  case _ => false
-}
+      let txSenderIsOwner = ownerPk == tx.senderPk
+      let txSenderAddress = addressFromPublicKey(tx.senderPk)
+    
+      let vestingPeriodEnded = if elapsedWeeks > ${maxVestingPeriodWeeks} then true else false
+    
+      let elapsedMsec = tx.timestamp - startingUnixTimestampMsec
+      let elapsedWeeks = elapsedMsec / 7 * 86400 * 1000 
+      
+      let currentBalance = accountAssetBalance(txSenderAddress, assetId)
+      let remainingBalanceAfterTx = currentBalance - tx.amount
+  
+      let minRequiredAtTxTimestamp = if elapsedWeeks <= ${cliffPeriodWeeks} then startingAssetAmount
+          else startingAssetAmount * (${maxVestingPeriodWeeks} - elapsedWeeks / ${maxVestingPeriodWeeks} - ${cliffPeriodWeeks})
+  
+      let vestingConditionsMatch = remainingBalanceAfterTx >= minRequiredAtTxTimestamp
+  
+      sigVerify(tx.bodyBytes, tx.proofs[0], tx.senderPk) && txSenderIsOwner && (vestingPeriodEnded || vestingConditionsMatch)
+  
+    case burnTx:BurnTransaction => true
+    case _ => false
+  }
 `
+}
 
 export {createContractFromTemplate}
