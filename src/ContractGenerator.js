@@ -16,7 +16,7 @@ class ContractGenerator extends Component {
     const contractScript = createContractFromTemplate(this.state)
     return (
       <div className="Contract-generator">
-        <Header> Generate a vesting smart contract for an account </Header>
+        <Header> Generate a vesting smart contract for an account script on WAVES blockchain </Header>
         <Segment inverted>
           <Form inverted>
             <Form.Group width={"equal"}>
@@ -39,6 +39,10 @@ class ContractGenerator extends Component {
               </div>
             </Segment>
           </Form>
+        </Segment>
+        <Segment color={"red"}>
+          This is an experimental project and may contain bugs. Do not use in production before doing an professional
+          audit.
         </Segment>
 
       </div>
