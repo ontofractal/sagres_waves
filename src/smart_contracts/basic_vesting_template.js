@@ -1,11 +1,12 @@
-import {DateTime} from "luxon"
+// import {DateTime} from "luxon"
+const {DateTime} = require("luxon")
 
 const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId, ownerPk, maxVestingPeriodWeeks, cliffPeriodWeeks}) => {
-  const startingUnixTimestampMsec = DateTime.fromISO("2016-05-25").toMillis()
+  const startingUnixTimestampMsec = DateTime.fromISO(startingDate).toMillis()
 
   return `
   let startingUnixTimestampMsec = ${startingUnixTimestampMsec} 
-  let startingAssetAmount = ${originalAssetAmount} 
+  let originalAssetAmount = ${originalAssetAmount} 
   let assetId = base58'${assetId}'
   let ownerPk = base58'${ownerPk}'
   
@@ -23,7 +24,7 @@ const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId,
       let currentBalance = accountAssetBalance(txSenderAddress, assetId)
       let remainingBalanceAfterTx = currentBalance - tx.amount
   
-      let minRequiredAtTxTimestamp = if elapsedWeeks <= ${cliffPeriodWeeks} then startingAssetAmount
+      let minRequiredAtTxTimestamp = if elapsedWeeks <= ${cliffPeriodWeeks} then originalAssetAmount
           else startingAssetAmount * (${maxVestingPeriodWeeks} - elapsedWeeks / ${maxVestingPeriodWeeks} - ${cliffPeriodWeeks})
   
       let vestingConditionsMatch = remainingBalanceAfterTx >= minRequiredAtTxTimestamp
@@ -36,4 +37,7 @@ const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId,
 `
 }
 
-export {createContractFromTemplate}
+// export {createContractFromTemplate}
+module.exports = {
+  createContractFromTemplate
+}
