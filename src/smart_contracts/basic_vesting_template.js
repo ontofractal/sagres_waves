@@ -20,7 +20,7 @@ const createContractFromTemplate = ({startingDate, originalAssetAmount, assetId,
       let elapsedWeeks = elapsedMsec / 7 * 86400 * 1000 
       let vestingPeriodEnded = if elapsedWeeks > ${maxVestingPeriodWeeks} then true else false
       
-      let currentBalance = accountAssetBalance(txSenderAddress, assetId)
+      let currentBalance = assetBalance(txSenderAddress, assetId)
       let remainingBalanceAfterTx = currentBalance - tx.amount
   
       let minRequiredAtTxTimestamp = if elapsedWeeks <= ${cliffPeriodWeeks} then originalAssetAmount
